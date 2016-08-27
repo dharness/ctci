@@ -1,9 +1,7 @@
-from collections import Counter
-
 class LinkedList:
     class __Node:
         """ Node class represents an individual item in the list """
-        def __init__(self, data, next_node):
+        def __init__(self, data, next_node=None):
             self.data = data
             self.next_node = next_node
 
@@ -16,7 +14,7 @@ class LinkedList:
 
     def append(self, data):
         """ Adds an item to the end (right side) of a list """
-        node = self.__Node(data, None)
+        node = self.__Node(data)
         if not self.head:
             self.head = node
         else:
@@ -25,7 +23,7 @@ class LinkedList:
 
     def append_left(self, data):
       """ Adds an item to the start(left side) of a list """
-      node = self.__Node(data, None)
+      node = self.__Node(data)
       node.next_node = self.head
       self.head = node
 
@@ -41,19 +39,6 @@ class LinkedList:
                 prev_node = current_node
                 current_node = current_node.next_node
 
-    def remove_dupes(self):
-      """ Removes all duplicate data"""
-      n = self.head
-      count = Counter()
-      prev = self.head
-      while n:
-        count[n.data] += 1
-        if count[n.data] > 1:
-          prev.next_node = n.next_node
-        prev = n
-        n = n.next_node
-
-
     def __str__(self):
         result = []
         current_node = self.head
@@ -68,19 +53,15 @@ my_list.append('Lemmons')
 my_list.append('Pie')
 my_list.append('Rumm')
 
-# Check the list
-print(my_list)
+def test(list):
 
-# Remove the tails
-my_list.remove('Rumm')
-print(my_list)
+  # Remove the tails
+  list.remove('Rumm')
+  print(list)
 
 
-my_list.append_left('Rumm')
-print(my_list)
+  list.append_left('Rumm')
+  print(list)
 
-my_list.append_left('Rumm')
-print(my_list)
-
-my_list.remove_dupes()
-print(my_list)
+  list.append_left('Rumm')
+  print(list)
